@@ -1,0 +1,27 @@
+{
+  "team_number": "T0109",
+  "group_lead": {
+    "name": "Shivang Agarwal",
+    "enrollment_no": "2501010429",
+    "github": "https://github.com/shivanga25429-cmd"
+  },
+  "members": [
+    {
+      "name": "Navneet Kumar",
+      "enrollment_no": "2501010298",
+      "github": "https://github.com/1-navneet"
+    },
+    {
+      "name": "Jatasay Khetaan",
+      "enrollment_no": "2501010576",
+      "github": "https://github.com/Jatasay9"
+    },
+    {
+      "name": "Paras Dhankhar",
+      "enrollment_no": "2501010320",
+      "github": "https://github.com/parasdhankharr"
+    }
+  ],
+  "postgres_version": "18.7",
+  "laptop_used_for_benchmarks": "MacBook Pro M4, 16GB RAM"
+}

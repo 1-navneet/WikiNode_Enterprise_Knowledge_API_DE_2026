@@ -20,14 +20,14 @@
 
 ## Team details (fill in before you start)
 
-| Role | Name | Enrollment No. | GitHub Username |
-|------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Role | Name | Section | Enrollment No. | GitHub Username |
+|------|------|---------|----------------|-----------------|
+| Group Lead |Shivang Agarwal | A | 2501010429 | shivanga25429-cmd |
+| Member 2 |Navneet Ku | B | 2501010298 | 1-navneet |
+| Member 3 |Jatasay Khetaan | A | 2501010576 | Jatasay9 |
+| Member 4 |Paras Dhankhar | B | 2501010320 | parasdhankharr |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** T0109 · **Repository URL:** https://github.com/shivanga25429-cmd/WikiNode_Enterprise_Knowledge_API_DE_2026
 
 ---
 
