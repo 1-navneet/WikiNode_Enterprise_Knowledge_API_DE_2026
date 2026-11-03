@@ -23,7 +23,7 @@
 | Role | Name | Section | Enrollment No. | GitHub Username |
 |------|------|---------|----------------|-----------------|
 | Group Lead |Shivang Agarwal | A | 2501010429 | shivanga25429-cmd |
-| Member 2 |Navneet Ku | B | 2501010298 | 1-navneet |
+| Member 2 |Navneet Kumar | B | 2501010298 | 1-navneet |
 | Member 3 |Jatasay Khetaan | A | 2501010576 | Jatasay9 |
 | Member 4 |Paras Dhankhar | B | 2501010320 | parasdhankharr |
 
