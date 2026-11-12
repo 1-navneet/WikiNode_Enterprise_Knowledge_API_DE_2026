@@ -1,0 +1,28 @@
+{
+  "name": "dbms-google-pay-digital-payments",
+  "version": "1.0.0",
+  "description": "**Course:** Database Management Systems · **Year:** B.Tech 2nd year · **Team size:** 4 **Database:** PostgreSQL 15 or newer · **Final submission:** Mon 23 Nov 2026 **Topics used:** Data types & constraints · Keys & relationships · Normalization · Query execution plans · Indexing · Query optimization · VACUUM/ANALYZE · Partitioning & sharding",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1-navneet/WikiNode_Enterprise_Knowledge_API_DE_2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/1-navneet/WikiNode_Enterprise_Knowledge_API_DE_2026/issues"
+  },
+  "homepage": "https://github.com/1-navneet/WikiNode_Enterprise_Knowledge_API_DE_2026#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
