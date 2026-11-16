@@ -1,0 +1,75 @@
+erDiagram
+    CITIES ||--o{ USERS : resides_in
+    CITIES ||--o{ MERCHANTS : located_in
+    USERS ||--o{ BANK_ACCOUNTS : links
+    USERS ||--o{ VPAS : holds
+    BANK_ACCOUNTS ||--o{ VPAS : backs
+    MERCHANTS o|--o{ TRANSACTIONS : receives_P2M
+    USERS ||--o{ REWARDS : earns
+    TRANSACTIONS ||--o{ REWARDS : produces
+    USERS ||--o{ BILL_PAYMENTS : owes
+    TRANSACTIONS ||--o{ DISPUTES : disputed_by
+    USERS ||--o{ DISPUTES : raises
+
+    CITIES {
+        int city_id PK
+        varchar city_name
+        varchar state
+    }
+    USERS {
+        int user_id PK
+        varchar phone UK
+        varchar email UK
+        int city_id FK
+        varchar kyc_status
+        boolean is_blocked
+    }
+    BANK_ACCOUNTS {
+        int account_id PK
+        int user_id FK
+        varchar ifsc
+        varchar account_last4
+        boolean is_primary
+    }
+    VPAS {
+        varchar vpa PK
+        int user_id FK
+        int account_id FK
+        boolean is_active
+    }
+    MERCHANTS {
+        int merchant_id PK
+        varchar merchant_vpa UK
+        int city_id FK
+        varchar mcc
+    }
+    TRANSACTIONS {
+        bigint txn_id PK
+        varchar upi_ref UK
+        varchar payer_vpa
+        varchar payee_vpa
+        int merchant_id FK
+        numeric amount
+        varchar status
+    }
+    REWARDS {
+        int reward_id PK
+        int user_id FK
+        bigint txn_id FK
+        varchar reward_type
+        varchar status
+    }
+    BILL_PAYMENTS {
+        int bill_id PK
+        int user_id FK
+        varchar biller_category
+        numeric amount
+        varchar status
+    }
+    DISPUTES {
+        int dispute_id PK
+        bigint txn_id FK
+        int raised_by FK
+        varchar reason
+        varchar status
+    }

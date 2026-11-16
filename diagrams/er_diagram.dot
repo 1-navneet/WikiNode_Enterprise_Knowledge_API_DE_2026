@@ -1,0 +1,25 @@
+digraph schema {
+ graph [rankdir=LR, bgcolor="white", pad=0.4, nodesep=0.55, ranksep=1.0, labelloc="t", label="Google Pay UPI • Database Entity Relationships", fontname="DejaVu Sans", fontsize=20];
+ node [shape=record, style="rounded,filled", fillcolor="#eff6ff", color="#7798bb", fontname="DejaVu Sans", fontsize=11, margin=0.14];
+ edge [color="#64748b", fontname="DejaVu Sans", fontsize=10, arrowsize=0.75];
+ cities [label="{CITIES|city_id PK|city_name, state}"];
+ users [label="{USERS|user_id PK|phone UQ, email UQ|city_id FK, kyc_status}"];
+ bank_accounts [label="{BANK_ACCOUNTS|account_id PK|user_id FK, is_primary|ifsc, account_last4}"];
+ vpas [label="{VPAS|vpa PK|user_id FK, account_id FK|is_active}"];
+ merchants [label="{MERCHANTS|merchant_id PK|merchant_vpa UQ, city_id FK|mcc, is_verified}"];
+ transactions [label="{TRANSACTIONS|txn_id PK|upi_ref UQ, merchant_id FK|payer_vpa, payee_vpa, status}"];
+ rewards [label="{REWARDS|reward_id PK|user_id FK, txn_id FK|reward_type, status}"];
+ bill_payments [label="{BILL_PAYMENTS|bill_id PK|user_id FK|due_date, status}"];
+ disputes [label="{DISPUTES|dispute_id PK|txn_id FK, raised_by FK|reason, status}"];
+ cities -> users [label="1 : N"];
+ cities -> merchants [label="1 : N"];
+ users -> bank_accounts [label="1 : N"];
+ users -> vpas [label="1 : N"];
+ bank_accounts -> vpas [label="1 : N"];
+ merchants -> transactions [label="1 : N (P2M)"];
+ users -> rewards [label="1 : N"];
+ transactions -> rewards [label="1 : N"];
+ users -> bill_payments [label="1 : N"];
+ users -> disputes [label="1 : N"];
+ transactions -> disputes [label="1 : N"];
+}
