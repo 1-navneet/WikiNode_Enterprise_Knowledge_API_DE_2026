@@ -1,0 +1,36 @@
+=== R13 run 1 ===
+Seq Scan on merchants m  (cost=7746.85..7819.35 rows=1500 width=27) (actual time=38.800..38.800 rows=0.00 loops=1)
+  Filter: (NOT (ANY (merchant_id = (hashed SubPlan 1).col1)))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=4651
+  SubPlan 1
+    ->  Seq Scan on transactions t  (cost=0.00..7120.68 rows=250468 width=4) (actual time=0.033..17.664 rows=250468.00 loops=1)
+          Buffers: shared hit=4616
+Planning:
+  Buffers: shared hit=110
+Planning Time: 0.563 ms
+Execution Time: 38.881 ms
+=== R13 run 2 ===
+Seq Scan on merchants m  (cost=7746.85..7819.35 rows=1500 width=27) (actual time=29.127..29.128 rows=0.00 loops=1)
+  Filter: (NOT (ANY (merchant_id = (hashed SubPlan 1).col1)))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=4651
+  SubPlan 1
+    ->  Seq Scan on transactions t  (cost=0.00..7120.68 rows=250468 width=4) (actual time=0.010..13.421 rows=250468.00 loops=1)
+          Buffers: shared hit=4616
+Planning:
+  Buffers: shared hit=110
+Planning Time: 0.249 ms
+Execution Time: 29.172 ms
+=== R13 run 3 ===
+Seq Scan on merchants m  (cost=7746.85..7819.35 rows=1500 width=27) (actual time=23.909..23.909 rows=0.00 loops=1)
+  Filter: (NOT (ANY (merchant_id = (hashed SubPlan 1).col1)))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=4651
+  SubPlan 1
+    ->  Seq Scan on transactions t  (cost=0.00..7120.68 rows=250468 width=4) (actual time=0.009..11.274 rows=250468.00 loops=1)
+          Buffers: shared hit=4616
+Planning:
+  Buffers: shared hit=110
+Planning Time: 0.279 ms
+Execution Time: 23.951 ms

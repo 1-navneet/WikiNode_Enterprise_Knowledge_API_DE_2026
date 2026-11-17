@@ -1,0 +1,57 @@
+=== R16 run 1 ===
+Sort  (cost=1029.30..1029.59 rows=114 width=51) (actual time=0.341..0.342 rows=75.00 loops=1)
+  Sort Key: d.raised_at
+  Sort Method: quicksort  Memory: 30kB
+  Buffers: shared hit=349
+  ->  Nested Loop  (cost=0.42..1025.41 rows=114 width=51) (actual time=0.168..0.327 rows=75.00 loops=1)
+        Buffers: shared hit=346
+        ->  Seq Scan on disputes d  (cost=0.00..99.53 rows=114 width=40) (actual time=0.160..0.173 rows=75.00 loops=1)
+              Filter: ((raised_at < '2026-06-23 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'OPEN'::text))
+              Rows Removed by Filter: 3494
+              Buffers: shared hit=46
+        ->  Index Scan using transactions_pkey on transactions t  (cost=0.42..8.12 rows=1 width=27) (actual time=0.002..0.002 rows=1.00 loops=75)
+              Index Cond: (txn_id = d.txn_id)
+              Index Searches: 75
+              Buffers: shared hit=300
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.389 ms
+Execution Time: 0.363 ms
+=== R16 run 2 ===
+Sort  (cost=1029.30..1029.59 rows=114 width=51) (actual time=0.303..0.304 rows=75.00 loops=1)
+  Sort Key: d.raised_at
+  Sort Method: quicksort  Memory: 30kB
+  Buffers: shared hit=349
+  ->  Nested Loop  (cost=0.42..1025.41 rows=114 width=51) (actual time=0.154..0.284 rows=75.00 loops=1)
+        Buffers: shared hit=346
+        ->  Seq Scan on disputes d  (cost=0.00..99.53 rows=114 width=40) (actual time=0.147..0.159 rows=75.00 loops=1)
+              Filter: ((raised_at < '2026-06-23 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'OPEN'::text))
+              Rows Removed by Filter: 3494
+              Buffers: shared hit=46
+        ->  Index Scan using transactions_pkey on transactions t  (cost=0.42..8.12 rows=1 width=27) (actual time=0.002..0.002 rows=1.00 loops=75)
+              Index Cond: (txn_id = d.txn_id)
+              Index Searches: 75
+              Buffers: shared hit=300
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.309 ms
+Execution Time: 0.324 ms
+=== R16 run 3 ===
+Sort  (cost=1029.30..1029.59 rows=114 width=51) (actual time=0.354..0.355 rows=75.00 loops=1)
+  Sort Key: d.raised_at
+  Sort Method: quicksort  Memory: 30kB
+  Buffers: shared hit=349
+  ->  Nested Loop  (cost=0.42..1025.41 rows=114 width=51) (actual time=0.198..0.339 rows=75.00 loops=1)
+        Buffers: shared hit=346
+        ->  Seq Scan on disputes d  (cost=0.00..99.53 rows=114 width=40) (actual time=0.190..0.203 rows=75.00 loops=1)
+              Filter: ((raised_at < '2026-06-23 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'OPEN'::text))
+              Rows Removed by Filter: 3494
+              Buffers: shared hit=46
+        ->  Index Scan using transactions_pkey on transactions t  (cost=0.42..8.12 rows=1 width=27) (actual time=0.002..0.002 rows=1.00 loops=75)
+              Index Cond: (txn_id = d.txn_id)
+              Index Searches: 75
+              Buffers: shared hit=300
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.302 ms
+Execution Time: 0.377 ms

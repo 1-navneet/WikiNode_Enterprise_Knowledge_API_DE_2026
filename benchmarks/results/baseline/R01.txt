@@ -1,0 +1,93 @@
+=== R01 run 1 ===
+Limit  (cost=11882.47..11885.96 rows=30 width=87) (actual time=31.373..32.160 rows=14.00 loops=1)
+  Buffers: shared hit=7800
+  ->  Gather Merge  (cost=11882.47..33760.70 rows=187850 width=87) (actual time=31.372..32.158 rows=14.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7800
+        ->  Sort  (cost=10882.45..11078.12 rows=78271 width=87) (actual time=27.067..27.068 rows=4.67 loops=3)
+              Sort Key: t.initiated_at DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=7800
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Parallel Seq Scan on transactions t  (cost=2389.33..8570.76 rows=78271 width=87) (actual time=11.842..27.041 rows=4.67 loops=3)
+                    Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+                    Rows Removed by Filter: 83485
+                    Buffers: shared hit=7784
+                    SubPlan 1
+                      ->  Seq Scan on vpas  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.199..4.235 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+                    SubPlan 2
+                      ->  Seq Scan on vpas vpas_1  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.229..3.267 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+Planning:
+  Buffers: shared hit=182 dirtied=1
+Planning Time: 0.691 ms
+Execution Time: 32.218 ms
+=== R01 run 2 ===
+Limit  (cost=11882.47..11885.96 rows=30 width=87) (actual time=22.935..23.862 rows=14.00 loops=1)
+  Buffers: shared hit=7800
+  ->  Gather Merge  (cost=11882.47..33760.70 rows=187850 width=87) (actual time=22.934..23.860 rows=14.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7800
+        ->  Sort  (cost=10882.45..11078.12 rows=78271 width=87) (actual time=21.342..21.343 rows=4.67 loops=3)
+              Sort Key: t.initiated_at DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=7800
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Parallel Seq Scan on transactions t  (cost=2389.33..8570.76 rows=78271 width=87) (actual time=10.411..21.330 rows=4.67 loops=3)
+                    Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+                    Rows Removed by Filter: 83485
+                    Buffers: shared hit=7784
+                    SubPlan 1
+                      ->  Seq Scan on vpas  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.117..3.312 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+                    SubPlan 2
+                      ->  Seq Scan on vpas vpas_1  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.152..2.559 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+Planning:
+  Buffers: shared hit=182
+Planning Time: 0.297 ms
+Execution Time: 23.921 ms
+=== R01 run 3 ===
+Limit  (cost=11882.47..11885.96 rows=30 width=87) (actual time=20.670..21.350 rows=14.00 loops=1)
+  Buffers: shared hit=7800
+  ->  Gather Merge  (cost=11882.47..33760.70 rows=187850 width=87) (actual time=20.669..21.349 rows=14.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7800
+        ->  Sort  (cost=10882.45..11078.12 rows=78271 width=87) (actual time=19.247..19.248 rows=4.67 loops=3)
+              Sort Key: t.initiated_at DESC
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=7800
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Parallel Seq Scan on transactions t  (cost=2389.33..8570.76 rows=78271 width=87) (actual time=9.068..19.232 rows=4.67 loops=3)
+                    Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+                    Rows Removed by Filter: 83485
+                    Buffers: shared hit=7784
+                    SubPlan 1
+                      ->  Seq Scan on vpas  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.165..2.845 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+                    SubPlan 2
+                      ->  Seq Scan on vpas vpas_1  (cost=0.00..1194.66 rows=1 width=24) (actual time=0.141..2.843 rows=2.00 loops=3)
+                            Filter: (user_id = 15177)
+                            Rows Removed by Filter: 53331
+                            Buffers: shared hit=1584
+Planning:
+  Buffers: shared hit=182
+Planning Time: 0.292 ms
+Execution Time: 21.393 ms
