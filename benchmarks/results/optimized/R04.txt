@@ -1,0 +1,42 @@
+=== R04 run 1 ===
+Sort  (cost=23.14..23.54 rows=159 width=59) (actual time=0.074..0.078 rows=120.00 loops=1)
+  Sort Key: initiated_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=11 dirtied=1
+  ->  Index Scan using idx_gpay_txn_pending_id on transactions  (cost=0.14..17.32 rows=159 width=59) (actual time=0.011..0.048 rows=120.00 loops=1)
+        Filter: (initiated_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '00:15:00'::interval))
+        Rows Removed by Filter: 5
+        Index Searches: 1
+        Buffers: shared hit=8 dirtied=1
+Planning:
+  Buffers: shared hit=324
+Planning Time: 0.565 ms
+Execution Time: 0.096 ms
+=== R04 run 2 ===
+Sort  (cost=23.14..23.54 rows=159 width=59) (actual time=0.032..0.034 rows=120.00 loops=1)
+  Sort Key: initiated_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=7
+  ->  Index Scan using idx_gpay_txn_pending_id on transactions  (cost=0.14..17.32 rows=159 width=59) (actual time=0.007..0.018 rows=120.00 loops=1)
+        Filter: (initiated_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '00:15:00'::interval))
+        Rows Removed by Filter: 5
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=324
+Planning Time: 0.418 ms
+Execution Time: 0.045 ms
+=== R04 run 3 ===
+Sort  (cost=23.14..23.54 rows=159 width=59) (actual time=0.033..0.035 rows=120.00 loops=1)
+  Sort Key: initiated_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=7
+  ->  Index Scan using idx_gpay_txn_pending_id on transactions  (cost=0.14..17.32 rows=159 width=59) (actual time=0.007..0.017 rows=120.00 loops=1)
+        Filter: (initiated_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '00:15:00'::interval))
+        Rows Removed by Filter: 5
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=324
+Planning Time: 0.415 ms
+Execution Time: 0.045 ms

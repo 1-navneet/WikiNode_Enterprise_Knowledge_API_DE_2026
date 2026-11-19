@@ -1,0 +1,57 @@
+=== R03 run 1 ===
+Aggregate  (cost=16.89..16.90 rows=1 width=32) (actual time=0.020..0.021 rows=1.00 loops=1)
+  Buffers: shared hit=10
+  ->  Nested Loop  (cost=0.83..16.89 rows=1 width=6) (actual time=0.018..0.018 rows=0.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas v  (cost=0.41..8.43 rows=1 width=24) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using idx_gpay_txn_payer_time on transactions t  (cost=0.42..8.44 rows=1 width=30) (actual time=0.006..0.006 rows=0.00 loops=2)
+              Index Cond: (((payer_vpa)::text = (v.vpa)::text) AND (initiated_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Filter: ((status)::text = ANY ('{SUCCESS,PENDING}'::text[]))
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.769 ms
+Execution Time: 0.039 ms
+=== R03 run 2 ===
+Aggregate  (cost=16.89..16.90 rows=1 width=32) (actual time=0.019..0.019 rows=1.00 loops=1)
+  Buffers: shared hit=10
+  ->  Nested Loop  (cost=0.83..16.89 rows=1 width=6) (actual time=0.017..0.017 rows=0.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas v  (cost=0.41..8.43 rows=1 width=24) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using idx_gpay_txn_payer_time on transactions t  (cost=0.42..8.44 rows=1 width=30) (actual time=0.006..0.006 rows=0.00 loops=2)
+              Index Cond: (((payer_vpa)::text = (v.vpa)::text) AND (initiated_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Filter: ((status)::text = ANY ('{SUCCESS,PENDING}'::text[]))
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.669 ms
+Execution Time: 0.036 ms
+=== R03 run 3 ===
+Aggregate  (cost=16.89..16.90 rows=1 width=32) (actual time=0.030..0.030 rows=1.00 loops=1)
+  Buffers: shared hit=10
+  ->  Nested Loop  (cost=0.83..16.89 rows=1 width=6) (actual time=0.026..0.026 rows=0.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas v  (cost=0.41..8.43 rows=1 width=24) (actual time=0.005..0.006 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using idx_gpay_txn_payer_time on transactions t  (cost=0.42..8.44 rows=1 width=30) (actual time=0.010..0.010 rows=0.00 loops=2)
+              Index Cond: (((payer_vpa)::text = (v.vpa)::text) AND (initiated_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Filter: ((status)::text = ANY ('{SUCCESS,PENDING}'::text[]))
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.901 ms
+Execution Time: 0.054 ms

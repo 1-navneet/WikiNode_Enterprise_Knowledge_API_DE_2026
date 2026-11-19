@@ -1,0 +1,66 @@
+=== R19 run 1 ===
+Sort  (cost=2469.60..2470.21 rows=243 width=39) (actual time=1.470..1.474 rows=239.00 loops=1)
+  Sort Key: (COALESCE((count(*) FILTER (WHERE ((t.status)::text = 'SUCCESS'::text))), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 38kB
+  Buffers: shared hit=822
+  ->  Nested Loop Left Join  (cost=0.42..2459.97 rows=243 width=39) (actual time=0.092..1.441 rows=239.00 loops=1)
+        Buffers: shared hit=819
+        ->  Seq Scan on merchants m  (cost=0.00..72.50 rows=243 width=23) (actual time=0.004..0.153 rows=239.00 loops=1)
+              Filter: (is_verified AND (city_id = 1))
+              Rows Removed by Filter: 2761
+              Buffers: shared hit=35
+        ->  GroupAggregate  (cost=0.42..9.80 rows=1 width=20) (actual time=0.005..0.005 rows=0.87 loops=239)
+              Buffers: shared hit=784
+              ->  Index Only Scan using idx_gpay_txn_merchant_time on transactions t  (cost=0.42..9.38 rows=55 width=19) (actual time=0.002..0.003 rows=57.54 loops=239)
+                    Index Cond: (merchant_id = m.merchant_id)
+                    Heap Fetches: 5
+                    Index Searches: 239
+                    Buffers: shared hit=784
+Planning:
+  Buffers: shared hit=321
+Planning Time: 0.509 ms
+Execution Time: 1.497 ms
+=== R19 run 2 ===
+Sort  (cost=2469.60..2470.21 rows=243 width=39) (actual time=1.529..1.534 rows=239.00 loops=1)
+  Sort Key: (COALESCE((count(*) FILTER (WHERE ((t.status)::text = 'SUCCESS'::text))), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 38kB
+  Buffers: shared hit=822
+  ->  Nested Loop Left Join  (cost=0.42..2459.97 rows=243 width=39) (actual time=0.096..1.497 rows=239.00 loops=1)
+        Buffers: shared hit=819
+        ->  Seq Scan on merchants m  (cost=0.00..72.50 rows=243 width=23) (actual time=0.005..0.152 rows=239.00 loops=1)
+              Filter: (is_verified AND (city_id = 1))
+              Rows Removed by Filter: 2761
+              Buffers: shared hit=35
+        ->  GroupAggregate  (cost=0.42..9.80 rows=1 width=20) (actual time=0.005..0.006 rows=0.87 loops=239)
+              Buffers: shared hit=784
+              ->  Index Only Scan using idx_gpay_txn_merchant_time on transactions t  (cost=0.42..9.38 rows=55 width=19) (actual time=0.002..0.004 rows=57.54 loops=239)
+                    Index Cond: (merchant_id = m.merchant_id)
+                    Heap Fetches: 5
+                    Index Searches: 239
+                    Buffers: shared hit=784
+Planning:
+  Buffers: shared hit=321
+Planning Time: 0.552 ms
+Execution Time: 1.559 ms
+=== R19 run 3 ===
+Sort  (cost=2469.60..2470.21 rows=243 width=39) (actual time=1.551..1.556 rows=239.00 loops=1)
+  Sort Key: (COALESCE((count(*) FILTER (WHERE ((t.status)::text = 'SUCCESS'::text))), '0'::bigint)) DESC
+  Sort Method: quicksort  Memory: 38kB
+  Buffers: shared hit=822
+  ->  Nested Loop Left Join  (cost=0.42..2459.97 rows=243 width=39) (actual time=0.087..1.522 rows=239.00 loops=1)
+        Buffers: shared hit=819
+        ->  Seq Scan on merchants m  (cost=0.00..72.50 rows=243 width=23) (actual time=0.004..0.155 rows=239.00 loops=1)
+              Filter: (is_verified AND (city_id = 1))
+              Rows Removed by Filter: 2761
+              Buffers: shared hit=35
+        ->  GroupAggregate  (cost=0.42..9.80 rows=1 width=20) (actual time=0.006..0.006 rows=0.87 loops=239)
+              Buffers: shared hit=784
+              ->  Index Only Scan using idx_gpay_txn_merchant_time on transactions t  (cost=0.42..9.38 rows=55 width=19) (actual time=0.002..0.004 rows=57.54 loops=239)
+                    Index Cond: (merchant_id = m.merchant_id)
+                    Heap Fetches: 5
+                    Index Searches: 239
+                    Buffers: shared hit=784
+Planning:
+  Buffers: shared hit=321
+Planning Time: 0.480 ms
+Execution Time: 1.580 ms

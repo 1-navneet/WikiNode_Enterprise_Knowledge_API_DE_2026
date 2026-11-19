@@ -1,0 +1,60 @@
+=== R22 run 1 ===
+Sort  (cost=16.76..16.77 rows=1 width=45) (actual time=0.046..0.046 rows=2.00 loops=1)
+  Sort Key: ba.is_primary DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=15
+  ->  Nested Loop Left Join  (cost=0.70..16.75 rows=1 width=45) (actual time=0.009..0.011 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Scan using idx_gpay_bank_accounts_user on bank_accounts ba  (cost=0.29..8.31 rows=1 width=24) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using idx_gpay_vpas_account on vpas v  (cost=0.41..8.43 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=2)
+              Index Cond: (account_id = ba.account_id)
+              Heap Fetches: 0
+              Index Searches: 2
+              Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=308
+Planning Time: 0.400 ms
+Execution Time: 0.068 ms
+=== R22 run 2 ===
+Sort  (cost=16.76..16.77 rows=1 width=45) (actual time=0.022..0.022 rows=2.00 loops=1)
+  Sort Key: ba.is_primary DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=15
+  ->  Nested Loop Left Join  (cost=0.70..16.75 rows=1 width=45) (actual time=0.011..0.012 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Scan using idx_gpay_bank_accounts_user on bank_accounts ba  (cost=0.29..8.31 rows=1 width=24) (actual time=0.003..0.004 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using idx_gpay_vpas_account on vpas v  (cost=0.41..8.43 rows=1 width=29) (actual time=0.003..0.003 rows=1.00 loops=2)
+              Index Cond: (account_id = ba.account_id)
+              Heap Fetches: 0
+              Index Searches: 2
+              Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=308
+Planning Time: 0.415 ms
+Execution Time: 0.049 ms
+=== R22 run 3 ===
+Sort  (cost=16.76..16.77 rows=1 width=45) (actual time=0.020..0.020 rows=2.00 loops=1)
+  Sort Key: ba.is_primary DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=15
+  ->  Nested Loop Left Join  (cost=0.70..16.75 rows=1 width=45) (actual time=0.010..0.011 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Scan using idx_gpay_bank_accounts_user on bank_accounts ba  (cost=0.29..8.31 rows=1 width=24) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (user_id = 15177)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using idx_gpay_vpas_account on vpas v  (cost=0.41..8.43 rows=1 width=29) (actual time=0.002..0.002 rows=1.00 loops=2)
+              Index Cond: (account_id = ba.account_id)
+              Heap Fetches: 0
+              Index Searches: 2
+              Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=308
+Planning Time: 0.388 ms
+Execution Time: 0.043 ms

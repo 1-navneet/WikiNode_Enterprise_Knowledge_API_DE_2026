@@ -1,0 +1,51 @@
+=== R20 run 1 ===
+GroupAggregate  (cost=1751.01..2275.56 rows=13988 width=44) (actual time=1.875..2.605 rows=30.00 loops=1)
+  Group Key: ((initiated_at)::date)
+  Buffers: shared hit=122
+  ->  Sort  (cost=1751.01..1785.98 rows=13988 width=11) (actual time=1.839..2.100 rows=13764.00 loops=1)
+        Sort Key: ((initiated_at)::date)
+        Sort Method: quicksort  Memory: 815kB
+        Buffers: shared hit=122
+        ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.42..787.80 rows=13988 width=11) (actual time=0.006..1.270 rows=13764.00 loops=1)
+              Index Cond: ((initiated_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 76
+              Index Searches: 1
+              Buffers: shared hit=119
+Planning:
+  Buffers: shared hit=347
+Planning Time: 0.478 ms
+Execution Time: 2.636 ms
+=== R20 run 2 ===
+GroupAggregate  (cost=1751.01..2275.56 rows=13988 width=44) (actual time=1.762..2.476 rows=30.00 loops=1)
+  Group Key: ((initiated_at)::date)
+  Buffers: shared hit=122
+  ->  Sort  (cost=1751.01..1785.98 rows=13988 width=11) (actual time=1.720..1.984 rows=13764.00 loops=1)
+        Sort Key: ((initiated_at)::date)
+        Sort Method: quicksort  Memory: 815kB
+        Buffers: shared hit=122
+        ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.42..787.80 rows=13988 width=11) (actual time=0.005..1.196 rows=13764.00 loops=1)
+              Index Cond: ((initiated_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 76
+              Index Searches: 1
+              Buffers: shared hit=119
+Planning:
+  Buffers: shared hit=347
+Planning Time: 0.497 ms
+Execution Time: 2.505 ms
+=== R20 run 3 ===
+GroupAggregate  (cost=1751.01..2275.56 rows=13988 width=44) (actual time=1.654..2.288 rows=30.00 loops=1)
+  Group Key: ((initiated_at)::date)
+  Buffers: shared hit=122
+  ->  Sort  (cost=1751.01..1785.98 rows=13988 width=11) (actual time=1.622..1.846 rows=13764.00 loops=1)
+        Sort Key: ((initiated_at)::date)
+        Sort Method: quicksort  Memory: 815kB
+        Buffers: shared hit=122
+        ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.42..787.80 rows=13988 width=11) (actual time=0.005..1.132 rows=13764.00 loops=1)
+              Index Cond: ((initiated_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Heap Fetches: 76
+              Index Searches: 1
+              Buffers: shared hit=119
+Planning:
+  Buffers: shared hit=347
+Planning Time: 0.470 ms
+Execution Time: 2.320 ms
