@@ -4,13 +4,12 @@ node_modules/
 # Environment variables and secrets
 .env
 .env.*
-
-# Keep the example environment file
 !.env.example
 
 # macOS
 .DS_Store
 
-# Existing DBMS exclusions
+# Faculty data are local-only; never commit large CSVs or archive.
 seed_data/
 large_data/
+large_data.zip
