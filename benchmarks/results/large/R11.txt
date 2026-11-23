@@ -1,0 +1,29 @@
+=== R11 run 1 ===
+Index Scan using idx_gpay_rewards_unscratched_expiry on rewards  (cost=0.29..420.87 rows=9976 width=16) (actual time=0.090..0.345 rows=1034.00 loops=1)
+  Index Cond: (expires_at < '2026-07-04 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared read=56
+Planning:
+  Buffers: shared hit=129
+Planning Time: 0.214 ms
+Execution Time: 0.380 ms
+
+=== R11 run 2 ===
+Index Scan using idx_gpay_rewards_unscratched_expiry on rewards  (cost=0.29..420.87 rows=9976 width=16) (actual time=0.011..0.214 rows=1034.00 loops=1)
+  Index Cond: (expires_at < '2026-07-04 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=56
+Planning:
+  Buffers: shared hit=129
+Planning Time: 0.328 ms
+Execution Time: 0.264 ms
+
+=== R11 run 3 ===
+Index Scan using idx_gpay_rewards_unscratched_expiry on rewards  (cost=0.29..420.87 rows=9976 width=16) (actual time=0.009..0.166 rows=1034.00 loops=1)
+  Index Cond: (expires_at < '2026-07-04 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=56
+Planning:
+  Buffers: shared hit=129
+Planning Time: 0.211 ms
+Execution Time: 0.208 ms

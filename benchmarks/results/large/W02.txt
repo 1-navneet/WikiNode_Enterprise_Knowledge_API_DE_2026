@@ -1,0 +1,65 @@
+=== W02 run 1 ===
+Update on transactions  (cost=0.76..8.78 rows=0 width=0) (actual time=1.015..1.015 rows=0.00 loops=1)
+  Buffers: shared hit=65 read=19 dirtied=10
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=8) (actual time=0.032..0.032 rows=1.00 loops=1)
+          Buffers: shared hit=2 read=1
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.32 rows=1 width=8) (actual time=0.030..0.030 rows=1.00 loops=1)
+                  Buffers: shared hit=2 read=1
+                  ->  Index Only Scan using idx_gpay_txn_pending_id on transactions transactions_1  (cost=0.28..62.82 rows=1503 width=8) (actual time=0.029..0.029 rows=1.00 loops=1)
+                        Heap Fetches: 0
+                        Index Searches: 1
+                        Buffers: shared hit=2 read=1
+  ->  Index Scan using transactions_pkey on transactions  (cost=0.43..8.45 rows=1 width=92) (actual time=0.281..0.282 rows=1.00 loops=1)
+        Index Cond: (txn_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=5 read=2
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.523 ms
+Execution Time: 1.503 ms
+
+=== W02 run 2 ===
+Update on transactions  (cost=0.76..8.78 rows=0 width=0) (actual time=0.278..0.279 rows=0.00 loops=1)
+  Buffers: shared hit=87 read=1 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=8) (actual time=0.031..0.031 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.32 rows=1 width=8) (actual time=0.029..0.029 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_gpay_txn_pending_id on transactions transactions_1  (cost=0.28..62.82 rows=1503 width=8) (actual time=0.029..0.029 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using transactions_pkey on transactions  (cost=0.43..8.45 rows=1 width=92) (actual time=0.043..0.043 rows=1.00 loops=1)
+        Index Cond: (txn_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.498 ms
+Execution Time: 0.321 ms
+
+=== W02 run 3 ===
+Update on transactions  (cost=0.76..8.78 rows=0 width=0) (actual time=0.273..0.274 rows=0.00 loops=1)
+  Buffers: shared hit=87 read=1 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=8) (actual time=0.029..0.030 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.32 rows=1 width=8) (actual time=0.028..0.028 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_gpay_txn_pending_id on transactions transactions_1  (cost=0.28..62.82 rows=1503 width=8) (actual time=0.028..0.028 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using transactions_pkey on transactions  (cost=0.43..8.45 rows=1 width=92) (actual time=0.040..0.041 rows=1.00 loops=1)
+        Index Cond: (txn_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.422 ms
+Execution Time: 0.313 ms

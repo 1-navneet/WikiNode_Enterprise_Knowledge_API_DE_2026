@@ -1,0 +1,7 @@
+SET
+DO
+DO
+                             result
+-----------------------------------------------------------------
+ PASS: large dataset semantic integrity and plausible row counts
+(1 row)

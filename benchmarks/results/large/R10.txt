@@ -1,0 +1,44 @@
+=== R10 run 1 ===
+Sort  (cost=8.31..8.32 rows=1 width=31) (actual time=0.046..0.046 rows=0.00 loops=1)
+  Sort Key: expires_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3 read=2
+  ->  Index Scan using idx_gpay_rewards_user_unscratched on rewards  (cost=0.29..8.30 rows=1 width=31) (actual time=0.039..0.040 rows=0.00 loops=1)
+        Index Cond: (user_id = 15177)
+        Filter: (expires_at > '2026-06-30 23:59:00+05:30'::timestamp with time zone)
+        Index Searches: 1
+        Buffers: shared read=2
+Planning:
+  Buffers: shared hit=106 read=32
+Planning Time: 0.971 ms
+Execution Time: 0.061 ms
+
+=== R10 run 2 ===
+Sort  (cost=8.31..8.32 rows=1 width=31) (actual time=0.009..0.010 rows=0.00 loops=1)
+  Sort Key: expires_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  Index Scan using idx_gpay_rewards_user_unscratched on rewards  (cost=0.29..8.30 rows=1 width=31) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (user_id = 15177)
+        Filter: (expires_at > '2026-06-30 23:59:00+05:30'::timestamp with time zone)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=138
+Planning Time: 0.249 ms
+Execution Time: 0.027 ms
+
+=== R10 run 3 ===
+Sort  (cost=8.31..8.32 rows=1 width=31) (actual time=0.009..0.009 rows=0.00 loops=1)
+  Sort Key: expires_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5
+  ->  Index Scan using idx_gpay_rewards_user_unscratched on rewards  (cost=0.29..8.30 rows=1 width=31) (actual time=0.003..0.003 rows=0.00 loops=1)
+        Index Cond: (user_id = 15177)
+        Filter: (expires_at > '2026-06-30 23:59:00+05:30'::timestamp with time zone)
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=138
+Planning Time: 0.251 ms
+Execution Time: 0.026 ms

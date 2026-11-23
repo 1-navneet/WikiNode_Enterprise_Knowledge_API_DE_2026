@@ -1,0 +1,36 @@
+BEGIN
+INSERT 0 10000
+ANALYZE
+=== FILTERED: June 2026 should prune other monthly partitions ===
+                                                                              QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=358.00..358.00 rows=1 width=8) (actual time=0.754..0.754 rows=1.00 loops=1)
+   Buffers: shared hit=183
+   ->  Seq Scan on transactions_2026_06 transactions_partitioned  (cost=0.00..333.00 rows=9998 width=0) (actual time=0.003..0.543 rows=10000.00 loops=1)
+         Filter: ((initiated_at >= '2026-06-01 05:30:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 05:30:00+05:30'::timestamp with time zone))
+         Buffers: shared hit=183
+ Planning:
+   Buffers: shared hit=193
+ Planning Time: 0.310 ms
+ Execution Time: 0.762 ms
+(9 rows)
+
+=== UNFILTERED: no time predicate ===
+                                                                            QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=358.02..358.03 rows=1 width=8) (actual time=0.806..0.806 rows=1.00 loops=1)
+   Buffers: shared hit=183
+   ->  Append  (cost=0.00..333.01 rows=10003 width=0) (actual time=0.002..0.603 rows=10000.00 loops=1)
+         Buffers: shared hit=183
+         ->  Seq Scan on transactions_2026_05 transactions_partitioned_1  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0.00 loops=1)
+         ->  Seq Scan on transactions_2026_06 transactions_partitioned_2  (cost=0.00..283.00 rows=10000 width=0) (actual time=0.001..0.280 rows=10000.00 loops=1)
+               Buffers: shared hit=183
+         ->  Seq Scan on transactions_2026_07 transactions_partitioned_3  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0.00 loops=1)
+         ->  Seq Scan on transactions_default transactions_partitioned_4  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0.00 loops=1)
+ Planning:
+   Buffers: shared hit=79 read=15
+ Planning Time: 0.166 ms
+ Execution Time: 0.812 ms
+(13 rows)
+
+ROLLBACK

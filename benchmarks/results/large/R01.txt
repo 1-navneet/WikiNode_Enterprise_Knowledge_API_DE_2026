@@ -1,0 +1,74 @@
+=== R01 run 1 ===
+Limit  (cost=25.37..28.25 rows=30 width=89) (actual time=121.961..832.261 rows=3.00 loops=1)
+  Buffers: shared hit=21143 read=131340 written=75
+  ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=25.37..360555.99 rows=3756491 width=89) (actual time=121.960..832.259 rows=3.00 loops=1)
+        Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+        Rows Removed by Filter: 5009337
+        Index Searches: 1
+        Buffers: shared hit=21143 read=131340 written=75
+        SubPlan 1
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas  (cost=0.43..12.46 rows=2 width=26) (actual time=0.374..0.375 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=1 read=3
+        SubPlan 2
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas vpas_1  (cost=0.43..12.46 rows=2 width=26) (actual time=0.003..0.003 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=352
+Planning Time: 0.552 ms
+Execution Time: 832.284 ms
+
+=== R01 run 2 ===
+Limit  (cost=25.37..28.25 rows=30 width=89) (actual time=110.917..830.944 rows=3.00 loops=1)
+  Buffers: shared hit=18431 read=134052
+  ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=25.37..360555.99 rows=3756491 width=89) (actual time=110.916..830.942 rows=3.00 loops=1)
+        Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+        Rows Removed by Filter: 5009337
+        Index Searches: 1
+        Buffers: shared hit=18431 read=134052
+        SubPlan 1
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas  (cost=0.43..12.46 rows=2 width=26) (actual time=0.035..0.036 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=1 read=3
+        SubPlan 2
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas vpas_1  (cost=0.43..12.46 rows=2 width=26) (actual time=0.003..0.003 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=305 read=43
+Planning Time: 0.807 ms
+Execution Time: 830.968 ms
+
+=== R01 run 3 ===
+Limit  (cost=25.37..28.25 rows=30 width=89) (actual time=117.340..830.673 rows=3.00 loops=1)
+  Buffers: shared hit=18431 read=134052
+  ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=25.37..360555.99 rows=3756491 width=89) (actual time=117.340..830.671 rows=3.00 loops=1)
+        Filter: ((ANY ((payer_vpa)::text = ((hashed SubPlan 1).col1)::text)) OR (ANY ((payee_vpa)::text = ((hashed SubPlan 2).col1)::text)))
+        Rows Removed by Filter: 5009337
+        Index Searches: 1
+        Buffers: shared hit=18431 read=134052
+        SubPlan 1
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas  (cost=0.43..12.46 rows=2 width=26) (actual time=0.034..0.035 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=1 read=3
+        SubPlan 2
+          ->  Index Only Scan using idx_gpay_vpas_user_vpa on vpas vpas_1  (cost=0.43..12.46 rows=2 width=26) (actual time=0.003..0.003 rows=2.00 loops=1)
+                Index Cond: (user_id = 15177)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=305 read=43
+Planning Time: 0.804 ms
+Execution Time: 830.701 ms

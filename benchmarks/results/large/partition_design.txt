@@ -1,0 +1,16 @@
+BEGIN
+CREATE SCHEMA
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+COMMIT
+                                                                             QUERY PLAN
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using transactions_2026_06_merchant_id_initiated_at_idx on transactions_2026_06 transactions_partitioned
+   Index Cond: ((initiated_at >= '2026-06-01 05:30:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-07-01 05:30:00+05:30'::timestamp with time zone))
+(2 rows)

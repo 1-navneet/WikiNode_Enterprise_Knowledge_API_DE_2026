@@ -1,0 +1,83 @@
+=== R06 run 1 ===
+Sort  (cost=3768.44..3790.26 rows=8730 width=64) (actual time=15.796..15.926 rows=4404.00 loops=1)
+  Sort Key: (sum(t.amount)) DESC
+  Sort Method: quicksort  Memory: 452kB
+  Buffers: shared hit=43 read=982
+  ->  HashAggregate  (cost=3087.86..3196.98 rows=8730 width=64) (actual time=14.106..14.827 rows=4404.00 loops=1)
+        Group Key: m.merchant_id
+        Batches: 1  Memory Usage: 2321kB
+        Buffers: shared hit=40 read=982
+        ->  Hash Join  (cost=2086.43..3022.38 rows=8730 width=30) (actual time=10.067..13.059 rows=4776.00 loops=1)
+              Hash Cond: (t.merchant_id = m.merchant_id)
+              Buffers: shared hit=40 read=982
+              ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=0.43..913.47 rows=8730 width=10) (actual time=0.008..1.812 rows=8519.00 loops=1)
+                    Index Cond: ((initiated_at >= '2026-06-29 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-06-30 00:00:00+05:30'::timestamp with time zone))
+                    Filter: ((status)::text = 'SUCCESS'::text)
+                    Rows Removed by Filter: 657
+                    Index Searches: 1
+                    Buffers: shared hit=40 read=246
+              ->  Hash  (cost=1336.00..1336.00 rows=60000 width=24) (actual time=10.029..10.029 rows=60000.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 3847kB
+                    Buffers: shared read=736
+                    ->  Seq Scan on merchants m  (cost=0.00..1336.00 rows=60000 width=24) (actual time=0.021..4.459 rows=60000.00 loops=1)
+                          Buffers: shared read=736
+Planning:
+  Buffers: shared hit=392 read=10 dirtied=1
+Planning Time: 0.948 ms
+Execution Time: 16.102 ms
+
+=== R06 run 2 ===
+Sort  (cost=3768.44..3790.26 rows=8730 width=64) (actual time=14.148..14.267 rows=4404.00 loops=1)
+  Sort Key: (sum(t.amount)) DESC
+  Sort Method: quicksort  Memory: 452kB
+  Buffers: shared hit=1025
+  ->  HashAggregate  (cost=3087.86..3196.98 rows=8730 width=64) (actual time=12.612..13.226 rows=4404.00 loops=1)
+        Group Key: m.merchant_id
+        Batches: 1  Memory Usage: 2321kB
+        Buffers: shared hit=1022
+        ->  Hash Join  (cost=2086.43..3022.38 rows=8730 width=30) (actual time=9.196..11.606 rows=4776.00 loops=1)
+              Hash Cond: (t.merchant_id = m.merchant_id)
+              Buffers: shared hit=1022
+              ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=0.43..913.47 rows=8730 width=10) (actual time=0.008..1.382 rows=8519.00 loops=1)
+                    Index Cond: ((initiated_at >= '2026-06-29 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-06-30 00:00:00+05:30'::timestamp with time zone))
+                    Filter: ((status)::text = 'SUCCESS'::text)
+                    Rows Removed by Filter: 657
+                    Index Searches: 1
+                    Buffers: shared hit=286
+              ->  Hash  (cost=1336.00..1336.00 rows=60000 width=24) (actual time=9.142..9.142 rows=60000.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 3847kB
+                    Buffers: shared hit=736
+                    ->  Seq Scan on merchants m  (cost=0.00..1336.00 rows=60000 width=24) (actual time=0.004..3.929 rows=60000.00 loops=1)
+                          Buffers: shared hit=736
+Planning:
+  Buffers: shared hit=400
+Planning Time: 0.928 ms
+Execution Time: 14.460 ms
+
+=== R06 run 3 ===
+Sort  (cost=3768.44..3790.26 rows=8730 width=64) (actual time=12.735..12.839 rows=4404.00 loops=1)
+  Sort Key: (sum(t.amount)) DESC
+  Sort Method: quicksort  Memory: 452kB
+  Buffers: shared hit=1025
+  ->  HashAggregate  (cost=3087.86..3196.98 rows=8730 width=64) (actual time=11.408..11.958 rows=4404.00 loops=1)
+        Group Key: m.merchant_id
+        Batches: 1  Memory Usage: 2321kB
+        Buffers: shared hit=1022
+        ->  Hash Join  (cost=2086.43..3022.38 rows=8730 width=30) (actual time=8.321..10.506 rows=4776.00 loops=1)
+              Hash Cond: (t.merchant_id = m.merchant_id)
+              Buffers: shared hit=1022
+              ->  Index Scan using idx_gpay_txn_history_page on transactions t  (cost=0.43..913.47 rows=8730 width=10) (actual time=0.008..1.225 rows=8519.00 loops=1)
+                    Index Cond: ((initiated_at >= '2026-06-29 00:00:00+05:30'::timestamp with time zone) AND (initiated_at < '2026-06-30 00:00:00+05:30'::timestamp with time zone))
+                    Filter: ((status)::text = 'SUCCESS'::text)
+                    Rows Removed by Filter: 657
+                    Index Searches: 1
+                    Buffers: shared hit=286
+              ->  Hash  (cost=1336.00..1336.00 rows=60000 width=24) (actual time=8.248..8.249 rows=60000.00 loops=1)
+                    Buckets: 65536  Batches: 1  Memory Usage: 3847kB
+                    Buffers: shared hit=736
+                    ->  Seq Scan on merchants m  (cost=0.00..1336.00 rows=60000 width=24) (actual time=0.003..3.501 rows=60000.00 loops=1)
+                          Buffers: shared hit=736
+Planning:
+  Buffers: shared hit=400
+Planning Time: 0.736 ms
+Execution Time: 13.008 ms

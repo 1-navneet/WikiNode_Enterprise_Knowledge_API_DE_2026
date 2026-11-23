@@ -1,0 +1,95 @@
+=== R17 run 1 ===
+Limit  (cost=142890.74..142890.79 rows=20 width=44) (actual time=240.289..240.302 rows=20.00 loops=1)
+  Buffers: shared hit=1342 read=91405
+  ->  Sort  (cost=142890.74..142923.05 rows=12925 width=44) (actual time=240.288..240.300 rows=20.00 loops=1)
+        Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((status)::text = 'REFUNDED'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=1342 read=91405
+        ->  Finalize HashAggregate  (cost=141900.56..142546.81 rows=12925 width=44) (actual time=231.112..237.528 rows=47418.00 loops=1)
+              Group Key: merchant_id
+              Filter: (count(*) >= 30)
+              Batches: 1  Memory Usage: 3865kB
+              Rows Removed by Filter: 3582
+              Buffers: shared hit=1339 read=91405
+              ->  Gather  (cost=131508.86..141202.61 rows=93060 width=20) (actual time=212.918..219.670 rows=153000.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=1339 read=91405
+                    ->  Partial HashAggregate  (cost=130508.86..130896.61 rows=38775 width=20) (actual time=211.148..213.645 rows=51000.00 loops=3)
+                          Group Key: merchant_id
+                          Batches: 1  Memory Usage: 3865kB
+                          Buffers: shared hit=1339 read=91405
+                          Worker 0:  Batches: 1  Memory Usage: 3865kB
+                          Worker 1:  Batches: 1  Memory Usage: 3865kB
+                          ->  Parallel Seq Scan on transactions  (cost=0.00..118834.31 rows=1167455 width=11) (actual time=0.038..99.839 rows=934558.00 loops=3)
+                                Filter: ((txn_type)::text = 'P2M'::text)
+                                Rows Removed by Filter: 735222
+                                Buffers: shared hit=1339 read=91405
+Planning:
+  Buffers: shared hit=300 read=1
+Planning Time: 0.470 ms
+Execution Time: 240.463 ms
+
+=== R17 run 2 ===
+Limit  (cost=142890.74..142890.79 rows=20 width=44) (actual time=239.169..239.183 rows=20.00 loops=1)
+  Buffers: shared hit=1625 read=91122
+  ->  Sort  (cost=142890.74..142923.05 rows=12925 width=44) (actual time=239.169..239.181 rows=20.00 loops=1)
+        Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((status)::text = 'REFUNDED'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=1625 read=91122
+        ->  Finalize HashAggregate  (cost=141900.56..142546.81 rows=12925 width=44) (actual time=229.637..236.060 rows=47418.00 loops=1)
+              Group Key: merchant_id
+              Filter: (count(*) >= 30)
+              Batches: 1  Memory Usage: 3865kB
+              Rows Removed by Filter: 3582
+              Buffers: shared hit=1622 read=91122
+              ->  Gather  (cost=131508.86..141202.61 rows=93060 width=20) (actual time=209.308..216.602 rows=152999.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=1622 read=91122
+                    ->  Partial HashAggregate  (cost=130508.86..130896.61 rows=38775 width=20) (actual time=207.856..210.635 rows=50999.67 loops=3)
+                          Group Key: merchant_id
+                          Batches: 1  Memory Usage: 4889kB
+                          Buffers: shared hit=1622 read=91122
+                          Worker 0:  Batches: 1  Memory Usage: 3865kB
+                          Worker 1:  Batches: 1  Memory Usage: 3865kB
+                          ->  Parallel Seq Scan on transactions  (cost=0.00..118834.31 rows=1167455 width=11) (actual time=0.040..98.468 rows=934558.00 loops=3)
+                                Filter: ((txn_type)::text = 'P2M'::text)
+                                Rows Removed by Filter: 735222
+                                Buffers: shared hit=1622 read=91122
+Planning:
+  Buffers: shared hit=301
+Planning Time: 0.491 ms
+Execution Time: 239.332 ms
+
+=== R17 run 3 ===
+Limit  (cost=142890.74..142890.79 rows=20 width=44) (actual time=240.013..240.037 rows=20.00 loops=1)
+  Buffers: shared hit=1907 read=90840
+  ->  Sort  (cost=142890.74..142923.05 rows=12925 width=44) (actual time=240.012..240.036 rows=20.00 loops=1)
+        Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((status)::text = 'REFUNDED'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=1907 read=90840
+        ->  Finalize HashAggregate  (cost=141900.56..142546.81 rows=12925 width=44) (actual time=231.239..237.411 rows=47418.00 loops=1)
+              Group Key: merchant_id
+              Filter: (count(*) >= 30)
+              Batches: 1  Memory Usage: 3865kB
+              Rows Removed by Filter: 3582
+              Buffers: shared hit=1904 read=90840
+              ->  Gather  (cost=131508.86..141202.61 rows=93060 width=20) (actual time=212.556..219.521 rows=153000.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=1904 read=90840
+                    ->  Partial HashAggregate  (cost=130508.86..130896.61 rows=38775 width=20) (actual time=211.174..213.723 rows=51000.00 loops=3)
+                          Group Key: merchant_id
+                          Batches: 1  Memory Usage: 3865kB
+                          Buffers: shared hit=1904 read=90840
+                          Worker 0:  Batches: 1  Memory Usage: 3865kB
+                          Worker 1:  Batches: 1  Memory Usage: 3865kB
+                          ->  Parallel Seq Scan on transactions  (cost=0.00..118834.31 rows=1167455 width=11) (actual time=0.030..99.062 rows=934558.00 loops=3)
+                                Filter: ((txn_type)::text = 'P2M'::text)
+                                Rows Removed by Filter: 735222
+                                Buffers: shared hit=1904 read=90840
+Planning:
+  Buffers: shared hit=301
+Planning Time: 0.417 ms
+Execution Time: 240.193 ms

@@ -1,0 +1,31 @@
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,831.318,830.968,830.701,832.284,Index Scan using idx_gpay_txn_history_page on transactions | Index Only Scan using idx_gpay_vpas_user_vpa on vpas
+R02,READ,0.271,0.067,0.036,0.711,Index Scan using vpas_pkey on vpas | Index Scan using users_pkey on users
+R03,READ,0.108,0.053,0.051,0.221,Index Only Scan using idx_gpay_vpas_user_vpa on vpas | Index Scan using idx_gpay_txn_payer_time on transactions
+R04,READ,0.758,0.769,0.644,0.861,Index Scan using idx_gpay_txn_pending_id on transactions
+R05,READ,0.126,0.068,0.043,0.266,Index Scan using idx_gpay_txn_merchant_time on transactions
+R06,READ,14.523,14.460,13.008,16.102,Index Scan using idx_gpay_txn_history_page on transactions | Seq Scan on merchants
+R07,READ,55.791,14.959,14.864,137.551,Parallel Index Scan using idx_gpay_txn_history_page on transactions | Index Scan using vpas_pkey on vpas | Index Scan using bank_account_owner_candidate_key on bank_accounts
+R08,READ,4474.441,4456.589,4442.242,4524.492,Parallel Seq Scan on transactions
+R09,READ,8237.610,8266.946,8021.051,8424.832,Index Scan using idx_gpay_txn_success_pair_time on transactions
+R10,READ,0.038,0.027,0.026,0.061,Index Scan using idx_gpay_rewards_user_unscratched on rewards
+R11,READ,0.284,0.264,0.208,0.380,Index Scan using idx_gpay_rewards_unscratched_expiry on rewards
+R12,READ,0.059,0.027,0.024,0.127,Index Scan using idx_gpay_bills_due_user_date on bill_payments
+R13,READ,70.001,60.595,60.336,89.073,Seq Scan on merchants | Index Only Scan using idx_gpay_txn_merchant_time on transactions
+R14,READ,0.226,0.088,0.084,0.505,Index Only Scan using idx_gpay_vpas_user_vpa on vpas | Index Scan using idx_gpay_txn_success_pair_time on transactions | Index Scan using merchants_pkey on merchants
+R15,READ,84.623,84.502,81.022,88.346,Index Only Scan using idx_gpay_txn_success_time_merchant on transactions | Seq Scan on merchants
+R16,READ,6.836,3.258,2.994,14.256,Index Scan using idx_gpay_disputes_open_raised on disputes | Index Scan using transactions_pkey on transactions
+R17,READ,239.996,240.193,239.332,240.463,Parallel Seq Scan on transactions
+R18,READ,810.269,739.947,736.764,954.096,Parallel Seq Scan on vpas | Parallel Seq Scan on users | Index Scan using idx_gpay_txn_payer_time on transactions
+R19,READ,26.838,25.189,24.881,30.444,Seq Scan on merchants | Index Only Scan using idx_gpay_txn_merchant_time on transactions
+R20,READ,58.958,60.059,56.361,60.455,Index Only Scan using idx_gpay_txn_history_page on transactions
+R21,READ,13.172,13.126,13.099,13.291,Seq Scan on merchants
+R22,READ,0.181,0.043,0.038,0.462,Index Scan using idx_gpay_bank_accounts_user on bank_accounts | Index Only Scan using idx_gpay_vpas_account on vpas
+R23,READ,13.602,13.449,13.178,14.179,Index Only Scan using idx_gpay_txn_history_page on transactions
+R24,READ,0.166,0.028,0.028,0.442,Index Scan using transactions_upi_ref_key on transactions
+R25,READ,177.932,173.588,170.538,189.670,Parallel Seq Scan on bank_accounts | Parallel Seq Scan on vpas | Parallel Index Scan using idx_gpay_txn_history_page on transactions
+W01,WRITE,1.063,0.604,0.585,1.999,(no scan)
+W02,WRITE,0.712,0.321,0.313,1.503,Index Only Scan using idx_gpay_txn_pending_id on transactions | Index Scan using transactions_pkey on transactions
+W03,WRITE,0.059,0.052,0.050,0.075,Index Only Scan using idx_gpay_rewards_user_unscratched on rewards | Index Scan using rewards_pkey on rewards
+W04,WRITE,3.835,4.233,2.152,5.119,Index Scan using idx_gpay_rewards_unscratched_expiry on rewards
+W05,WRITE,126.642,21.702,15.782,342.442,Bitmap Heap Scan on bill_payments | Bitmap Index Scan on idx_gpay_bills_due_date

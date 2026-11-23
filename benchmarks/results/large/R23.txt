@@ -1,0 +1,35 @@
+=== R23 run 1 ===
+Limit  (cost=9628.13..9629.34 rows=25 width=46) (actual time=13.436..13.438 rows=25.00 loops=1)
+  Buffers: shared hit=1654
+  ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.43..241142.56 rows=5009340 width=46) (actual time=0.031..9.817 rows=200025.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=1654
+Planning:
+  Buffers: shared hit=281 read=2
+Planning Time: 0.494 ms
+Execution Time: 13.449 ms
+
+=== R23 run 2 ===
+Limit  (cost=9628.13..9629.34 rows=25 width=46) (actual time=13.164..13.166 rows=25.00 loops=1)
+  Buffers: shared hit=1654
+  ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.43..241142.56 rows=5009340 width=46) (actual time=0.025..9.640 rows=200025.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=1654
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.392 ms
+Execution Time: 13.178 ms
+
+=== R23 run 3 ===
+Limit  (cost=9628.13..9629.34 rows=25 width=46) (actual time=14.165..14.167 rows=25.00 loops=1)
+  Buffers: shared hit=1654
+  ->  Index Only Scan using idx_gpay_txn_history_page on transactions  (cost=0.43..241142.56 rows=5009340 width=46) (actual time=0.025..10.785 rows=200025.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=1654
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.396 ms
+Execution Time: 14.179 ms
